@@ -1,12 +1,25 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./styles/nav-bar.css";
-import { NavLinkProps, navLinks } from "../links/navbar-links";
+import { links, NavLinkProps, navLinks } from "../links/navbar-links";
+import { isAuth, logOut } from "../services/authService";
+import { MDBBtn } from "mdb-react-ui-kit";
 
 const NavigationBar: React.FC = () => {
+  const navigate = useNavigate();
+  const signOut = () => {
+    navigate("/");
+    logOut();
+    alert("logout success");
+  };
   return (
     <nav>
-      <ul>{navLinks.map((props) => getComponent(props))}</ul>
+      <ul>
+        {!isAuth()
+          ? navLinks.map((props) => getComponent(props))
+          : links.map((props) => getComponent(props))}
+        {isAuth() ? <MDBBtn onClick={signOut}>Log Out</MDBBtn> : undefined}
+      </ul>
     </nav>
   );
 };

@@ -1,6 +1,5 @@
 /* SignUpForm.css */
 .form-container {
-  width: 50%;
   justify-content: center;
   align-items: center;
   margin-left: 25%;
@@ -23,7 +22,6 @@ label {
 }
 
 input {
-  width: 250px;
   padding: 8px;
   margin-bottom: 10px;
   border: 1px solid #ccc;
@@ -61,7 +59,6 @@ button:hover {
   background-color: #fff;
   color: #333;
   outline: none;
-  width: 270px;
 }
 
 .custom-select:focus {

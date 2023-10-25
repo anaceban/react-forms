@@ -4,6 +4,15 @@ import "./styles/sign-up.css";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
+import FacebookLogin from "./facebook-login";
+import InstagramLogin from "./instagram-login";
+import {
+  MDBContainer,
+  MDBInput,
+  MDBCheckbox,
+  MDBBtn,
+  MDBIcon,
+} from "mdb-react-ui-kit";
 
 interface FormData {
   email: string;
@@ -31,39 +40,24 @@ function SignIn() {
   };
 
   return (
-    <div className="form-container">
-      <form className="centred-form" onSubmit={handleSubmit(onSubmit)}>
-        <div>
-          <label>Email</label>
-          <Controller
-            name="email"
-            control={control}
-            defaultValue=""
-            rules={validationRules.email}
-            render={({ field }) => <input {...field} />}
-          />
-          {formState.errors.email && (
-            <p className="error">{formState.errors.email.message}</p>
-          )}
-        </div>
+    <MDBContainer className="p-3 my-5 d-flex flex-column w-50">
+      <MDBInput
+        wrapperClass="mb-4"
+        label="Email address"
+        id="form1"
+        type="email"
+      />
+      <MDBInput
+        wrapperClass="mb-4"
+        label="Password"
+        id="form2"
+        type="password"
+      />
 
-        <div>
-          <label>Password</label>
-          <Controller
-            name="password"
-            control={control}
-            defaultValue=""
-            rules={validationRules.password}
-            render={({ field }) => <input type="password" {...field} />}
-          />
-          {formState.errors.password && (
-            <p className="error">{formState.errors.password.message}</p>
-          )}
-        </div>
-
-        <button type="submit">Sign In</button>
-      </form>
-    </div>
+      <MDBBtn className="mb-4">Sign in</MDBBtn>
+      <InstagramLogin />
+      <FacebookLogin />
+    </MDBContainer>
   );
 }
 
